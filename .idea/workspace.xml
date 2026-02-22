@@ -81,10 +81,10 @@
 }</component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773252033973" />
-    <option name="spentUsd" value="0.07642014" />
+    <option name="spentUsd" value="0.09438314" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="1" />
+    <option name="suspendCountdown" value="0" />
   </component>
   <component name="RunManager">
     <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
@@ -117,7 +117,7 @@
       <updated>1771300399484</updated>
       <workItem from="1771300400612" duration="4900000" />
       <workItem from="1771775892594" duration="1000" />
-      <workItem from="1771776470085" duration="2890000" />
+      <workItem from="1771776470085" duration="3504000" />
     </task>
     <servers />
   </component>
