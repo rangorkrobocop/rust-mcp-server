@@ -9,12 +9,34 @@ mcp-test: release
 
 # Build the docker container
 docker-build:
-  docker build -t ghcr.io/rangorkrobocop/rust-mcp-server:latest .
+  docker build --platform linux/amd64,linux/arm64 -t ghcr.io/rangorkrobocop/rust-mcp-server:latest .
 
 # Push the docker container to ghcr
 docker-push: docker-build
   docker push ghcr.io/rangorkrobocop/rust-mcp-server:latest
 
-# Test the docker container with MCP inspector
+# --- Docker MCP Catalog ---
+
+CATALOG_NAME := "my-private-catalog"
+SERVER_NAME := "todo_mcp"
+
+# Initialize a private MCP catalog (run once)
+mcp-init-catalog:
+  -docker mcp catalog create {{ CATALOG_NAME }}
+  docker mcp catalog add {{ CATALOG_NAME }} {{ SERVER_NAME }} todo-mcp.yaml
+
+# Run the docker container via MCP Gateway
+mcp-gateway-run-catalog: mcp-enable-server
+  docker mcp gateway run --catalog {{ CATALOG_NAME }}
+
+# Enable the custom server
+mcp-enable-server:
+  docker mcp server enable {{ SERVER_NAME }}
+
+# Inspect the server configuration
+mcp-inspect:
+  docker mcp catalog show {{ CATALOG_NAME }} --format yaml | grep -A 4 "{{ SERVER_NAME }}:"
+
+# Test the docker container with standard MCP inspector
 docker-test: docker-build
   npx @modelcontextprotocol/inspector -e USER_ID={{ USER_ID }} docker run -i --rm -e USER_ID={{ USER_ID }} ghcr.io/rangorkrobocop/rust-mcp-server:latest

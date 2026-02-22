@@ -1,0 +1,7 @@
+# todo-mcp.yaml
+registry:
+  todo_mcp:
+    name: todo_mcp
+    image: ghcr.io/rangorkrobocop/rust-mcp-server:latest
+    description: A Rust implementation of a Model Context Protocol (MCP) server that provides CRUD operations for a TODO API.
+    source: https://github.com/rangorkrobocop/rust-mcp-server
