@@ -18,6 +18,7 @@
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/justfile" beforeDir="false" afterPath="$PROJECT_DIR$/justfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/todos.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-mcp.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/todo-mcp.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +118,7 @@
       <updated>1771300399484</updated>
       <workItem from="1771300400612" duration="4900000" />
       <workItem from="1771775892594" duration="1000" />
-      <workItem from="1771776470085" duration="3504000" />
+      <workItem from="1771776470085" duration="4279000" />
     </task>
     <servers />
   </component>

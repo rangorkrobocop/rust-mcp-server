@@ -1,4 +1,5 @@
 USER_ID := "1"
+IMAGE_URL := "ghcr.io/rangorkrobocop/rust-mcp-server:latest"
 
 release:
   cargo build --release
@@ -9,11 +10,15 @@ mcp-test: release
 
 # Build the docker container
 docker-build:
-  docker build --platform linux/amd64,linux/arm64 -t ghcr.io/rangorkrobocop/rust-mcp-server:latest .
+  docker build --platform linux/amd64,linux/arm64 -t {{ IMAGE_URL }} .
 
 # Push the docker container to ghcr
 docker-push: docker-build
-  docker push ghcr.io/rangorkrobocop/rust-mcp-server:latest
+  docker push {{ IMAGE_URL }}
+
+# Test the docker container with standard MCP inspector
+docker-test: docker-build
+  npx @modelcontextprotocol/inspector -e USER_ID={{ USER_ID }} docker run -i --rm -e USER_ID={{ USER_ID }} {{ IMAGE_URL }}
 
 # --- Docker MCP Catalog ---
 
@@ -41,7 +46,3 @@ mcp-refresh-server:
 # Inspect the server configuration
 mcp-inspect:
   docker mcp catalog show {{ CATALOG_NAME }} --format yaml | grep -A 4 "{{ SERVER_NAME }}:"
-
-# Test the docker container with standard MCP inspector
-docker-test: docker-build
-  npx @modelcontextprotocol/inspector -e USER_ID={{ USER_ID }} docker run -i --rm -e USER_ID={{ USER_ID }} ghcr.io/rangorkrobocop/rust-mcp-server:latest
